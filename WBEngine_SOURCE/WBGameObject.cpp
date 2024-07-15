@@ -1,5 +1,6 @@
 #include "WBGameObject.h"
 #include "WBInput.h"
+#include "WBTime.h"
 
 WB::GameObject::GameObject()
 {
@@ -11,21 +12,22 @@ WB::GameObject::~GameObject()
 
 void WB::GameObject::Update()
 {
+	const int speed = 100.0f;
 	if (Input::GetKey(eKeyCode::A))
 	{
-		mX -= 0.01f;
+		mX -= speed * Time::DeltaTime();
 	}
 	if (Input::GetKey(eKeyCode::D))
 	{
-		mX += 0.01f;
+		mX += speed * Time::DeltaTime();
 	}
 	if (Input::GetKey(eKeyCode::W))
 	{
-		mY -= 0.01f;
+		mY -= speed * Time::DeltaTime();
 	}
 	if (Input::GetKey(eKeyCode::S))
 	{
-		mY += 0.01f;
+		mY += speed * Time::DeltaTime();
 	}
 
 }
