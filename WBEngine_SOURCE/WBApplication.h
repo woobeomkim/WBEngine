@@ -1,6 +1,7 @@
 #pragma once
 #include "CommonInclude.h"
 #include "WBGameObject.h"
+#include "WBGameObjectRed.h"
 
 namespace WB
 {
@@ -26,6 +27,7 @@ namespace WB
 		//float mX;
 		//float mY;
 		GameObject mPlayer;
+		GameObjectRed mRedPlayer;
 	};
 
 }

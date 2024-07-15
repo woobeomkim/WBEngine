@@ -1,4 +1,5 @@
 #include "WBApplication.h"
+#include "WBInput.h"
 
 namespace WB
 {
@@ -14,6 +15,9 @@ namespace WB
 		mHdc = GetDC(hwnd);
 
 		mPlayer.SetPosition(0, 0);
+		mRedPlayer.SetPosition(0, 0);
+	
+		Input::Initailize();
 	}
 
 	void Application::Run()
@@ -25,7 +29,9 @@ namespace WB
 
 	void Application::Update()
 	{
+		Input::Update();
 		mPlayer.Update();
+		mRedPlayer.Update();
 		
 	}
 	void Application::LateUpdate()
@@ -34,5 +40,6 @@ namespace WB
 	void Application::Render()
 	{   
 		mPlayer.Render(mHdc);
+		mRedPlayer.Render(mHdc);
 	}
 }
