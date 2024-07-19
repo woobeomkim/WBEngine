@@ -16,16 +16,22 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WBApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WBEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WBGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WBGameObjectRed.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WBInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WBScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WBSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WBTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)WBApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WBEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WBGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WBGameObjectRed.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WBInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WBScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WBSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WBTime.cpp" />
   </ItemGroup>
 </Project>

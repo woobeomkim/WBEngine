@@ -17,8 +17,10 @@ namespace WB
 		void Update();
 		void LateUpdate();
 		void Render();
-	
-
+		
+	private:
+		void clearRenderTarget();
+		void copyRenderTarget(HDC source,HDC dest);
 	private:
 		HWND mHwnd;
 		HDC mHdc;
@@ -29,10 +31,11 @@ namespace WB
 		UINT mWidth;
 		UINT mHeight;
 		// 플레이어
-		//float mX;
-		//float mY;
-		GameObject mPlayer;
 		GameObjectRed mRedPlayer;
+
+		//std::vector<Scene*> mScene;
+		
+		//std::vector<GameObject*> mGameObjects;
 	};
 
 }

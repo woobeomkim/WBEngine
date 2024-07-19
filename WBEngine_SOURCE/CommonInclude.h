@@ -5,3 +5,5 @@
 #include <vector>
 #include <list>
 #include <algorithm>
+#include <string>
+#include <map>

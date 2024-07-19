@@ -6,7 +6,7 @@
 
 
 #include "..\\WBEngine_SOURCE\\WBApplication.h"
-
+#include "..\\WBEngine\\WBLoadScene.h"
 
 #pragma comment (lib,"..\\x64\\Debug\\WBEngine_Window.lib")
 WB::Application app;
@@ -139,6 +139,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   // load Scene
+   WB::LoadScenes();
 
    return TRUE;
 }

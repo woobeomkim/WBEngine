@@ -1,10 +1,11 @@
 #include "WBApplication.h"
 #include "WBInput.h"
 #include "WBTime.h"
+#include "WBSceneManager.h"
 
 namespace WB
 {
-    Application::Application() : mHwnd(nullptr), mHdc(nullptr) , mWidth(0) , mHeight(0), mBackHdc(nullptr), mBackBitmap(nullptr)
+	Application::Application() : mHwnd(nullptr), mHdc(nullptr), mWidth(0), mHeight(0), mBackHdc(nullptr), mBackBitmap(nullptr)
     {
     }
     Application::~Application()
@@ -34,9 +35,15 @@ namespace WB
 		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
 		DeleteObject(oldBitmap);
 
-		mPlayer.SetPosition(0, 0);
-		mRedPlayer.SetPosition(0, 0);
-	
+		SceneManager::Initialize();
+		/*for (size_t i = 0; i < 100; i++)
+		{
+			GameObject* gameObj = new GameObject();
+			gameObj->SetPosition(rand() % 1600, rand() % 900);
+			mGameObjects.push_back(gameObj);
+		}*/
+		
+
 		Input::Initailize();
 		Time::Initailize();
 	}
@@ -52,7 +59,11 @@ namespace WB
 	{
 		Input::Update();
 		Time::Update();
-		mPlayer.Update();
+		
+		/*for (int i = 0; i < mGameObjects.size(); i++)
+			mGameObjects[i]->Update();*/
+		SceneManager::Update();
+
 		mRedPlayer.Update();
 		
 	}
@@ -61,12 +72,26 @@ namespace WB
 	}
 	void Application::Render()
 	{   
-		Rectangle(mBackHdc, 0, 0, 1600, 900);
+		clearRenderTarget();
 
 		Time::Render(mBackHdc);
-		mPlayer.Render(mBackHdc);
+		/*for (int i = 0; i < mGameObjects.size(); i++)
+			mGameObjects[i]->Render(mBackHdc);*/
+		SceneManager::Render(mBackHdc);
 		mRedPlayer.Render(mBackHdc);
 
-		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
+		// BackBuffer에 있는걸 원본 Buffer에 복사(그려준다)
+		copyRenderTarget(mBackHdc, mHdc);
+	}
+	void Application::clearRenderTarget()
+	{
+		//clear
+		Rectangle(mBackHdc, -1, -1, 1601, 901);
+
+	}
+	void Application::copyRenderTarget(HDC source, HDC dest)
+	{
+		// BackBuffer에 있는걸 원본 Buffer에 복사(그려준다)
+		BitBlt(dest, 0, 0, mWidth, mHeight, source, 0, 0, SRCCOPY);
 	}
 }

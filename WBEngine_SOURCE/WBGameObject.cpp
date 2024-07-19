@@ -2,7 +2,7 @@
 #include "WBInput.h"
 #include "WBTime.h"
 
-WB::GameObject::GameObject()
+WB::GameObject::GameObject() :mX(0),mY(0)
 {
 }
 
@@ -39,18 +39,22 @@ void WB::GameObject::LateUpdate()
 void WB::GameObject::Render(HDC hdc)
 {
 	// 파랑 브러쉬 생성
-	HBRUSH blueBrush = CreateSolidBrush(RGB(0, 0, 255));
+	HBRUSH blueBrush = CreateSolidBrush(RGB(rand() % 255, rand() % 255, rand() % 255));
 
 	// 파랑 브러쉬 DC에 선택 그리고 흰색 브러쉬 반환값 반환
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
 
-	Rectangle(hdc, 100 + mX, 100 + mY, 200 + mX, 200 + mY);
+	HPEN redPen = CreatePen(PS_SOLID, 2, RGB(rand() % 255, rand() % 255, rand() % 255));
+	HPEN olePen = (HPEN)SelectObject(hdc, redPen);
+
+	Ellipse(hdc, mX, mY, 100 + mX, 100 + mY);
 
 	// 다시 흰색 원본브러쉬로 선택
 	SelectObject(hdc, oldBrush);
 
 	// 파랑 브러쉬 삭제
 	DeleteObject(blueBrush);
+	DeleteObject(redPen);
 	SelectObject(hdc, oldBrush);
 }
 
